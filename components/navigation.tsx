@@ -57,16 +57,8 @@ export function Navigation() {
             Amir Attari
           </Link>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-
-          {/* Desktop navigation */}
-          <ul className="hidden md:flex items-center space-x-8">
+          {/* Navigation links - shown on both mobile and desktop */}
+          <ul className="flex items-center space-x-4 md:space-x-8">
             {navItems.map((item) => (
               <li key={item.path}>
                 {item.external ? (
@@ -91,39 +83,6 @@ export function Navigation() {
               </li>
             ))}
           </ul>
-
-          {/* Mobile navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden pt-4 pb-2">
-              <ul className="flex flex-col space-y-4">
-                {navItems.map((item) => (
-                  <li key={item.path}>
-                    {item.external ? (
-                      <a
-                        href={item.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="command-prompt block hover:text-primary transition-colors text-white"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </a>
-                    ) : (
-                      <Link
-                        href={item.path}
-                        className={`command-prompt block hover:text-primary transition-colors ${
-                          pathname === item.path ? "text-primary" : "text-white"
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </nav>
       </div>
     </header>
