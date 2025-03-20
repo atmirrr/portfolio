@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import React from "react";
 
 interface TerminalProps {
-  texts: string[];
+  text?: string;
+  texts?: string[];
   typingSpeed?: number;
   className?: string;
   showPrompt?: boolean;
@@ -14,7 +15,8 @@ interface TerminalProps {
 }
 
 export function Terminal({
-  texts,
+  text,
+  texts: textsProp,
   typingSpeed = 50,
   className = "",
   showPrompt = true,
@@ -22,6 +24,12 @@ export function Terminal({
   title = "terminal",
   onlyAnimateFirstLine = false,
 }: TerminalProps) {
+  const texts = React.useMemo(() => {
+    if (text) return [text];
+    if (textsProp) return textsProp;
+    return [];
+  }, [text, textsProp]);
+
   // Initialize displayed texts - when onlyAnimateFirstLine is true,
   // only have the first line empty, show all other lines immediately
   const initialTexts = React.useMemo(() => {
