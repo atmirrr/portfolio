@@ -1,61 +1,70 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ProjectCard } from "@/components/project-card"
+import { useState } from "react";
+import { ProjectCard } from "@/components/project-card";
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState<string>("all")
+  const [activeFilter, setActiveFilter] = useState<string>("all");
 
   const projects = [
     {
-      id: "neural-network",
-      title: "Neural Network Visualizer",
-      description: "Interactive visualization of neural networks with real-time data processing and node connections.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React", "D3.js", "TensorFlow.js"],
+      id: "ai-live-chat",
+      title: "AI Live Chat Widget",
+      description:
+        "Enterprise-grade chatbot powered by self-hosted Deepseek V3, featuring RAG implementation and seamless API integrations for enhanced response accuracy.",
+      image: "/projects/ai-live-chat/detail.jpg",
+      technologies: ["Next.js", "Node.js", "LLM", "RAG"],
       category: "ai",
+      link: "/projects/ai-live-chat",
     },
     {
-      id: "crypto-dashboard",
-      title: "Crypto Dashboard",
-      description: "Real-time cryptocurrency tracking dashboard with customizable widgets and alerts.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Next.js", "WebSockets", "Chart.js"],
-      category: "web",
-    },
-    {
-      id: "ai-chatbot",
-      title: "AI Chatbot",
-      description: "Conversational AI assistant with natural language processing and machine learning capabilities.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Python", "NLP", "TensorFlow"],
-      category: "ai",
-    },
-    {
-      id: "blockchain-explorer",
-      title: "Blockchain Explorer",
-      description: "Tool for visualizing and exploring blockchain transactions and smart contracts.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React", "Ethers.js", "GraphQL"],
+      id: "solana-explorer",
+      title: "Solana Block Explorer",
+      description:
+        "Built on top of web3.js library and uses various APIs for fetching transactions history and parsing, this wallet scanner uses Next.js as the frontend solution",
+      image: "/projects/solana-explorer/detail.jpg",
+      technologies: ["Next.js", "Web3.js", "Solana"],
       category: "blockchain",
+      link: "/projects/solana-explorer",
     },
     {
-      id: "data-visualization",
-      title: "Data Visualization Platform",
-      description: "Interactive platform for creating and sharing data visualizations and insights.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["D3.js", "React", "Node.js"],
-      category: "data",
+      id: "dinner-meetup",
+      title: "Dinner Meetup Platform",
+      description:
+        "Full-stack social platform connecting people through dining experiences, featuring custom UI/UX design and real-time interactions.",
+      image: "/projects/dinner-meetup/detail.jpg",
+      technologies: ["React", "Supabase", "UI/UX"],
+      category: "web",
+      link: "/projects/dinner-meetup",
     },
-    {
-      id: "ar-navigation",
-      title: "AR Navigation System",
-      description: "Augmented reality navigation system for indoor and outdoor environments.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Unity", "ARKit", "C#"],
-      category: "ar",
-    },
-  ]
+    // {
+    //   id: "blockchain-explorer",
+    //   title: "Blockchain Explorer",
+    //   description:
+    //     "Tool for visualizing and exploring blockchain transactions and smart contracts.",
+    //   image: "/placeholder.svg?height=400&width=600",
+    //   technologies: ["React", "Ethers.js", "GraphQL"],
+    //   category: "blockchain",
+    // },
+    // {
+    //   id: "data-visualization",
+    //   title: "Data Visualization Platform",
+    //   description:
+    //     "Interactive platform for creating and sharing data visualizations and insights.",
+    //   image: "/placeholder.svg?height=400&width=600",
+    //   technologies: ["D3.js", "React", "Node.js"],
+    //   category: "data",
+    // },
+    // {
+    //   id: "ar-navigation",
+    //   title: "AR Navigation System",
+    //   description:
+    //     "Augmented reality navigation system for indoor and outdoor environments.",
+    //   image: "/placeholder.svg?height=400&width=600",
+    //   technologies: ["Unity", "ARKit", "C#"],
+    //   category: "ar",
+    // },
+  ];
 
   const categories = [
     { id: "all", name: "All Projects" },
@@ -64,10 +73,12 @@ export default function ProjectsPage() {
     { id: "blockchain", name: "Blockchain" },
     { id: "data", name: "Data Visualization" },
     { id: "ar", name: "AR/VR" },
-  ]
+  ];
 
   const filteredProjects =
-    activeFilter === "all" ? projects : projects.filter((project) => project.category === activeFilter)
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   return (
     <div className="space-y-8">
@@ -80,7 +91,8 @@ export default function ProjectsPage() {
         </div>
         <div className="terminal-content">
           <p className="mb-4">
-            <span className="text-primary">$</span> Displaying projects directory. Select category to filter results.
+            <span className="text-primary">$</span> Displaying projects
+            directory. Select category to filter results.
           </p>
         </div>
       </div>
@@ -114,6 +126,5 @@ export default function ProjectsPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
-

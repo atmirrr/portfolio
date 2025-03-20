@@ -1,13 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 export function Navigation() {
-  const pathname = usePathname()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [wasScrolled, setWasScrolled] = useState(false);
 
   const navItems = [
     // { name: "home", path: "/" },
@@ -16,18 +18,50 @@ export function Navigation() {
     // { name: "about", path: "/about" },
     { name: "github", path: "https://github.com/atmirrr", external: true },
     { name: "linkedin", path: "https://linkedin.com/in/atmir", external: true },
-  ]
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > 100) {
+        setWasScrolled(true);
+      }
+
+      if (wasScrolled && scrollTop === 0) {
+        setShouldAnimate(true);
+        // Reset the animation after it completes
+        setTimeout(() => {
+          setShouldAnimate(false);
+        }, 1500); // 1.5s = 5 iterations * 0.3s
+        setWasScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [wasScrolled]);
 
   return (
     <header className="border-b border-border/40 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-primary glitch" data-text="Amir Attari">
+          <Link
+            href="/"
+            className={`text-xl font-bold text-primary glitch ${
+              shouldAnimate ? "animate" : ""
+            }`}
+            data-text="Amir Attari"
+          >
             Amir Attari
           </Link>
 
           {/* Mobile menu button */}
-          <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
@@ -93,6 +127,5 @@ export function Navigation() {
         </nav>
       </div>
     </header>
-  )
+  );
 }
-
