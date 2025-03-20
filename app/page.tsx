@@ -35,15 +35,6 @@ export default function Home() {
       link: "https://live-chat-ebon-zeta.vercel.app/",
     },
     {
-      id: "dinner-meetup",
-      title: "Dinner Meetup Experience",
-      description:
-        "From idea to production, branding, designing UI/UX and built on top of React and Supabase as the backend as the service, I built this app as a social experiment",
-      image: "/projects/dinner-meetup/detail.jpg",
-      technologies: ["React", "Supabase", "UI/UX"],
-      link: "https://get-breakk.vercel.app",
-    },
-    {
       id: "solana-explorer",
       title: "Solana Block Explorer",
       description:
@@ -51,6 +42,15 @@ export default function Home() {
       image: "/projects/solana-explorer/detail.jpg",
       technologies: ["Next.js", "Web3.js", "Solana"],
       link: "https://clari.fi",
+    },
+    {
+      id: "dinner-meetup",
+      title: "Dinner Meetup Experience",
+      description:
+        "From idea to production, branding, designing UI/UX and built on top of React and Supabase as the backend as the service, I built this app as a social experiment",
+      image: "/projects/dinner-meetup/detail.jpg",
+      technologies: ["React", "Supabase", "UI/UX"],
+      link: "https://get-breakk.vercel.app",
     },
   ];
 
